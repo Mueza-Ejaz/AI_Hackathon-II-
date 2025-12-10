@@ -11,8 +11,8 @@ function Get-RepoRoot {
         # Git command failed
     }
     
-    # Fall back to script location for non-git repos
-    return (Resolve-Path (Join-Path $PSScriptRoot "../../..")).Path
+    # Fall back to the current directory if not a git repo or git command fails
+    return (Get-Location).Path
 }
 
 function Get-CurrentBranch {
@@ -93,7 +93,7 @@ function Get-FeatureDir {
 }
 
 function Get-FeaturePathsEnv {
-    $repoRoot = Get-RepoRoot
+    $repoRoot = (Get-Location).Path # Use current working directory as REPO_ROOT
     $currentBranch = Get-CurrentBranch
     $hasGit = Test-HasGit
     $featureDir = Get-FeatureDir -RepoRoot $repoRoot -Branch $currentBranch
