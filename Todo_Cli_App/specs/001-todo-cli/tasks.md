@@ -14,16 +14,16 @@ This document outlines the detailed, dependency-ordered tasks required to implem
 
 ### Phase 1: Setup
 
-- [ ] T001 Create `src/` directory at project root
-- [ ] T002 Create `tests/` directory at project root
-- [ ] T003 Create `src/__init__.py` to mark `src` as a Python package
-- [ ] T004 Create `tests/unit/` and `tests/integration/` directories
-- [ ] T005 Create `tests/unit/test_todo.py` for unit tests
-- [ ] T006 Create `tests/integration/test_cli.py` for integration tests
+- [X] T001 Create `src/` directory at project root
+- [X] T002 Create `tests/` directory at project root
+- [X] T003 Create `src/__init__.py` to mark `src` as a Python package
+- [X] T004 Create `tests/unit/` and `tests/integration/` directories
+- [X] T005 Create `tests/unit/test_todo.py` for unit tests
+- [X] T006 Create `tests/integration/test_cli.py` for integration tests
 
 ### Phase 2: Foundational Components
 
-- [ ] T007 Implement `Task` class in `src/todo.py` with `id`, `title`, `description`, `completed` attributes
+- [X] T007 Implement `Task` class in `src/todo.py` with `id`, `title`, `description`, `completed` attributes
 - [ ] T008 Implement `TodoApp` class in `src/todo.py` to manage tasks (in-memory list)
 - [ ] T009 Initialize `TodoApp` with an empty list of tasks and a task ID counter in `src/todo.py`
 
