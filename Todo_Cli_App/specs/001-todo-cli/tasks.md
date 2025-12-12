@@ -24,40 +24,40 @@ This document outlines the detailed, dependency-ordered tasks required to implem
 ### Phase 2: Foundational Components
 
 - [X] T007 Implement `Task` class in `src/todo.py` with `id`, `title`, `description`, `completed` attributes
-- [ ] T008 Implement `TodoApp` class in `src/todo.py` to manage tasks (in-memory list)
-- [ ] T009 Initialize `TodoApp` with an empty list of tasks and a task ID counter in `src/todo.py`
+- [X] T008 Implement `TodoApp` class in `src/todo.py` to manage tasks (in-memory list)
+- [X] T009 Initialize `TodoApp` with an empty list of tasks and a task ID counter in `src/todo.py`
 
 ### Phase 3: User Story 1 - Add and View Tasks (P1)
 
 **Goal**: Users can add new tasks and view a list of all tasks.
 **Independent Test Criteria**: Tasks can be added and successfully displayed with correct details (ID, title, description, status).
 
-- [ ] T010 [US1] Implement `add_task(self, title, description=None)` method in `src/todo.py::TodoApp`
-- [ ] T011 [US1] Implement `get_all_tasks(self)` method in `src/todo.py::TodoApp` to return all tasks
-- [ ] T012 [P] [US1] Add unit tests for `TodoApp.add_task` in `tests/unit/test_todo.py`
-- [ ] T013 [P] [US1] Add unit tests for `TodoApp.get_all_tasks` in `tests/unit/test_todo.py`
-- [ ] T014 [US1] Implement main menu loop and 'Add Task' option in `src/todo.py`
-- [ ] T015 [US1] Implement 'View Tasks' option to display all tasks in `src/todo.py`
-- [ ] T016 [P] [US1] Add integration tests for 'Add Task' and 'View Tasks' via CLI in `tests/integration/test_cli.py`
+- [X] T010 [US1] Implement `add_task(self, title, description=None)` method in `src/todo.py::TodoApp`
+- [X] T011 [US1] Implement `get_all_tasks(self)` method in `src/todo.py::TodoApp` to return all tasks
+- [X] T012 [P] [US1] Add unit tests for `TodoApp.add_task` in `tests/unit/test_todo.py`
+- [X] T013 [P] [US1] Add unit tests for `TodoApp.get_all_tasks` in `tests/unit/test_todo.py`
+- [X] T014 [US1] Implement main menu loop and 'Add Task' option in `src/todo.py`
+- [X] T015 [US1] Implement 'View Tasks' option to display all tasks in `src/todo.py`
+- [X] T016 [P] [US1] Add integration tests for 'Add Task' and 'View Tasks' via CLI in `tests/integration/test_cli.py`
 
 ### Phase 4: User Story 2 - Mark Task as Complete (P1)
 
 **Goal**: Users can mark an existing task as complete.
 **Independent Test Criteria**: An existing task can be marked complete, and its status correctly reflects this change when viewed.
 
-- [ ] T017 [US2] Implement `mark_task_complete(self, task_id)` method in `src/todo.py::TodoApp`
-- [ ] T018 [P] [US2] Add unit tests for `TodoApp.mark_task_complete` including edge cases (invalid ID) in `tests/unit/test_todo.py`
-- [ ] T019 [US2] Add 'Mark Task Complete' option to the main menu in `src/todo.py`
-- [ ] T020 [P] [US2] Add integration tests for 'Mark Task Complete' via CLI in `tests/integration/test_cli.py`
+- [X] T017 [US2] Implement `mark_task_complete(self, task_id)` method in `src/todo.py::TodoApp`
+- [X] T018 [P] [US2] Add unit tests for `TodoApp.mark_task_complete` including edge cases (invalid ID) in `tests/unit/test_todo.py`
+- [X] T019 [US2] Add 'Mark Task Complete' option to the main menu in `src/todo.py`
+- [X] T020 [P] [US2] Add integration tests for 'Mark Task Complete' via CLI in `tests/integration/test_cli.py`
 
 ### Phase 5: User Story 3 - Update Task (P2)
 
 **Goal**: Users can update the title and/or description of an existing task.
 **Independent Test Criteria**: An existing task's title and/or description can be updated, and the changes are reflected when viewed.
 
-- [ ] T021 [US3] Implement `update_task(self, task_id, new_title=None, new_description=None)` method in `src/todo.py::TodoApp`
-- [ ] T022 [P] [US3] Add unit tests for `TodoApp.update_task` including edge cases (invalid ID, partial updates) in `tests/unit/test_todo.py`
-- [ ] T023 [US3] Add 'Update Task' option to the main menu in `src/todo.py`
+- [X] T021 [US3] Implement `update_task(self, task_id, new_title=None, new_description=None)` method in `src/todo.py::TodoApp`
+- [X] T022 [P] [US3] Add unit tests for `TodoApp.update_task` including edge cases (invalid ID, partial updates) in `tests/unit/test_todo.py`
+- [X] T023 [US3] Add 'Update Task' option to the main menu in `src/todo.py`
 - [ ] T024 [P] [US3] Add integration tests for 'Update Task' via CLI in `tests/integration/test_cli.py`
 
 ### Phase 6: User Story 4 - Delete Task (P2)
