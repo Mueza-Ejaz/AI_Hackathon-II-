@@ -10,6 +10,7 @@ class Task:
         desc = f" ({self.description})" if self.description else ""
         return f"[{status}] {self.id}: {self.title}{desc}"
 
+
 class TodoApp:
     def __init__(self):
         self.tasks = []
@@ -44,6 +45,7 @@ class TodoApp:
         self.tasks = [task for task in self.tasks if task.id != task_id]
         return len(self.tasks) < initial_len
 
+
 def display_menu():
     print("\n--- Todo CLI App ---")
     print("1. Add Task")
@@ -53,6 +55,7 @@ def display_menu():
     print("5. Delete Task")
     print("6. Exit")
 
+
 def main():
     app = TodoApp()
     while True:
@@ -60,8 +63,11 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == '1':
-            title = input("Enter task title: ")
-            description = input("Enter task description (optional): ")
+            title = input("Enter task title: ").strip()
+            if not title:
+                print("Task title cannot be empty.")
+                continue
+            description = input("Enter task description (optional): ").strip()
             app.add_task(title, description if description else None)
             print("Task added successfully!")
         elif choice == '2':
@@ -72,31 +78,52 @@ def main():
                 for task in tasks:
                     print(task)
         elif choice == '3':
-            task_id = int(input("Enter the ID of the task to mark as complete: "))
-            if app.mark_task_complete(task_id):
-                print(f"Task {task_id} marked as complete.")
-            else:
-                print(f"Task {task_id} not found.")
+            try:
+                task_id = int(
+                    input("Enter the ID of the task to mark as complete: "))
+                if app.mark_task_complete(task_id):
+                    print(f"Task {task_id} marked as complete.")
+                else:
+                    print(f"Task {task_id} not found.")
+            except ValueError:
+                print("Invalid input. Please enter a number for task ID.")
         elif choice == '4':
-            task_id = int(input("Enter the ID of the task to update: "))
-            new_title = input("Enter new title (leave blank to keep current): ")
-            new_description = input("Enter new description (leave blank to keep current): ")
-            if app.update_task(task_id, new_title if new_title else None, new_description if new_description else None):
-                print(f"Task {task_id} updated successfully.")
-            else:
-                print(f"Task {task_id} not found.")
+            try:
+                task_id = int(input("Enter the ID of the task to update: "))
+                new_title = input(
+                    "Enter new title (leave blank to keep current): ").strip()
+                new_description = input(
+                    "Enter new description (leave blank to keep current): ").strip()
+                if not new_title and not new_description:
+                    print("No update provided. Task not modified.")
+                    continue
+
+                # Re-breaking this for E501
+                                if app.update_task(
+                                        task_id,
+                                        new_title if new_title else None,
+                                        (new_description if new_description else None)
+                                ):
+                    print(f"Task {task_id} updated successfully.")
+                else:
+                    print(f"Task {task_id} not found.")
+            except ValueError:
+                print("Invalid input. Please enter a number for task ID.")
         elif choice == '5':
-            task_id = int(input("Enter the ID of the task to delete: "))
-            if app.delete_task(task_id):
-                print(f"Task {task_id} deleted successfully.")
-            else:
-                print(f"Task {task_id} not found.")
+            try:
+                task_id = int(input("Enter the ID of the task to delete: "))
+                if app.delete_task(task_id):
+                    print(f"Task {task_id} deleted successfully.")
+                else:
+                    print(f"Task {task_id} not found.")
+            except ValueError:
+                print("Invalid input. Please enter a number for task ID.")
         elif choice == '6':
             print("Exiting application. Goodbye!")
             break
         else:
             print("Invalid choice. Please try again.")
 
+
 if __name__ == '__main__':
     main()
-

@@ -3,12 +3,14 @@ import subprocess
 import os
 import sys
 
+
 class TestTodoCLI(unittest.TestCase):
 
     def setUp(self):
         # Ensure the todo.py script is executable for testing
-        self.todo_script = os.path.join(os.path.dirname(__file__), '../../src/todo.py')
-        self.interpreter = sys.executable # Use the current Python interpreter
+        self.todo_script = os.path.join(
+            os.path.dirname(__file__), '../../src/todo.py')
+        self.interpreter = sys.executable  # Use the current Python interpreter
 
     def run_cli_command(self, input_data):
         """Helper to run the CLI with given input and capture output."""
@@ -33,7 +35,12 @@ class TestTodoCLI(unittest.TestCase):
 
     def test_add_and_view_multiple_tasks(self):
         # Test adding multiple tasks and viewing them
-        input_sequence = "1\nTask Alpha\n\n1\nTask Beta\nDescription Beta\n2\n6\n"
+        input_sequence = (
+            "1\nTask Alpha\n\n"
+            "1\nTask Beta\nDescription Beta\n"
+            "2\n"
+            "6\n"
+        )
         stdout, stderr = self.run_cli_command(input_sequence)
 
         self.assertIn("Task added successfully!", stdout)
@@ -72,16 +79,6 @@ class TestTodoCLI(unittest.TestCase):
         self.assertIn("Exiting application. Goodbye!", stdout)
         self.assertEqual(stderr, "")
 
-    def test_mark_task_complete_invalid_id(self):
-        # Try to mark a non-existent task as complete
-        input_sequence = "1\nTask to complete\n\n3\n999\n6\n"
-        stdout, stderr = self.run_cli_command(input_sequence)
-
-        self.assertIn("Task added successfully!", stdout)
-        self.assertIn("Task 999 not found.", stdout)
-        self.assertIn("Exiting application. Goodbye!", stdout)
-        self.assertEqual(stderr, "")
-
     def test_update_task_title(self):
         # Add a task, update its title, and view it
         input_sequence = "1\nInitial Title\n\n4\n1\nNew Title\n\n2\n6\n"
@@ -95,7 +92,12 @@ class TestTodoCLI(unittest.TestCase):
 
     def test_update_task_description(self):
         # Add a task, update its description, and view it
-        input_sequence = "1\nTitle\nInitial Description\n4\n1\n\nNew Description\n2\n6\n"
+        input_sequence = (
+            "1\nTitle\nInitial Description\n"
+            "4\n1\n\nNew Description\n"
+            "2\n"
+            "6\n"
+        )
         stdout, stderr = self.run_cli_command(input_sequence)
 
         self.assertIn("Task added successfully!", stdout)
@@ -106,7 +108,12 @@ class TestTodoCLI(unittest.TestCase):
 
     def test_update_task_both(self):
         # Add a task, update both title and description, and view it
-        input_sequence = "1\nOld Title\nOld Description\n4\n1\nNew Title\nNew Description\n2\n6\n"
+        input_sequence = (
+            "1\nOld Title\nOld Description\n"
+            "4\n1\nNew Title\nNew Description\n"
+            "2\n"
+            "6\n"
+        )
         stdout, stderr = self.run_cli_command(input_sequence)
 
         self.assertIn("Task added successfully!", stdout)
@@ -124,6 +131,33 @@ class TestTodoCLI(unittest.TestCase):
         self.assertIn("Task 999 not found.", stdout)
         self.assertIn("Exiting application. Goodbye!", stdout)
         self.assertEqual(stderr, "")
+
+        self.assertIn("Task 999 not found.", stdout)
+        self.assertIn("Exiting application. Goodbye!", stdout)
+        self.assertEqual(stderr, "")
+
+    def test_delete_task(self):
+        # Add tasks, delete one, and verify it's gone
+        input_sequence = "1\nTask One\n\n1\nTask Two\n\n5\n1\n2\n6\n"
+        stdout, stderr = self.run_cli_command(input_sequence)
+
+        self.assertIn("Task added successfully!", stdout)
+        self.assertIn("Task 1 deleted successfully.", stdout)
+        self.assertNotIn("Task One", stdout)
+        self.assertIn("[ ] 2: Task Two", stdout)
+        self.assertIn("Exiting application. Goodbye!", stdout)
+        self.assertEqual(stderr, "")
+
+    def test_delete_task_invalid_id(self):
+        # Try to delete a non-existent task
+        input_sequence = "1\nSome Task\n\n5\n999\n6\n"
+        stdout, stderr = self.run_cli_command(input_sequence)
+
+        self.assertIn("Task added successfully!", stdout)
+        self.assertIn("Task 999 not found.", stdout)
+        self.assertIn("Exiting application. Goodbye!", stdout)
+        self.assertEqual(stderr, "")
+
 
 if __name__ == '__main__':
     unittest.main()

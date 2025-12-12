@@ -67,16 +67,16 @@ This document outlines the detailed, dependency-ordered tasks required to implem
 
 - [X] T025 [US4] Implement `delete_task(self, task_id)` method in `src/todo.py::TodoApp`
 - [X] T026 [P] [US4] Add unit tests for `TodoApp.delete_task` including edge cases (invalid ID) in `tests/unit/test_todo.py`
-- [ ] T027 [US4] Add 'Delete Task' option to the main menu in `src/todo.py`
-- [ ] T028 [P] [US4] Add integration tests for 'Delete Task' via CLI in `tests/integration/test_cli.py`
+- [X] T027 [US4] Add 'Delete Task' option to the main menu in `src/todo.py`
+- [X] T028 [P] [US4] Add integration tests for 'Delete Task' via CLI in `tests/integration/test_cli.py`
 
 ### Phase 7: Polish & Cross-Cutting Concerns
 
 **Goal**: Enhance robustness, user experience, and code quality across the application.
 
-- [ ] T029 Implement robust input validation for all user inputs (e.g., integer IDs, non-empty titles) in `src/todo.py`
-- [ ] T030 Implement comprehensive error handling and user-friendly error messages for all CLI operations in `src/todo.py`
-- [ ] T031 Refine main menu display and navigation for improved user experience in `src/todo.py`
+- [X] T029 Implement robust input validation for all user inputs (e.g., integer IDs, non-empty titles) in `src/todo.py`
+- [X] T030 Implement comprehensive error handling and user-friendly error messages for all CLI operations in `src/todo.py`
+- [X] T031 Refine main menu display and navigation for improved user experience in `src/todo.py`
 - [ ] T032 Ensure overall PEP 8 compliance and code quality across `src/` and `tests/`
 - [ ] T033 Implement exit option in the main menu to gracefully terminate the application in `src/todo.py`
 

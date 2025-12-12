@@ -1,6 +1,7 @@
 import unittest
 from src.todo import TodoApp, Task
 
+
 class TestTodoApp(unittest.TestCase):
 
     def setUp(self):
@@ -54,13 +55,20 @@ class TestTodoApp(unittest.TestCase):
 
     def test_update_task_description(self):
         task = self.app.add_task("Old Title", "Old Description")
-        self.assertTrue(self.app.update_task(task.id, new_description="New Description"))
+        self.assertTrue(
+            self.app.update_task(
+                task.id,
+                new_description="New Description"))
         self.assertEqual(task.title, "Old Title")
         self.assertEqual(task.description, "New Description")
 
     def test_update_task_both(self):
         task = self.app.add_task("Old Title", "Old Description")
-        self.assertTrue(self.app.update_task(task.id, new_title="New Title", new_description="New Description"))
+        self.assertTrue(
+            self.app.update_task(
+                task.id,
+                new_title="New Title",
+                new_description="New Description"))
         self.assertEqual(task.title, "New Title")
         self.assertEqual(task.description, "New Description")
 
@@ -70,7 +78,7 @@ class TestTodoApp(unittest.TestCase):
 
     def test_update_task_no_changes(self):
         task = self.app.add_task("Title", "Description")
-        self.assertTrue(self.app.update_task(task.id)) # Should return True as ID found, but no changes made
+        self.assertTrue(self.app.update_task(task.id))  # No changes
         self.assertEqual(task.title, "Title")
         self.assertEqual(task.description, "Description")
 
@@ -90,6 +98,7 @@ class TestTodoApp(unittest.TestCase):
         self.app.add_task("Only Task")
         self.assertTrue(self.app.delete_task(1))
         self.assertEqual(len(self.app.tasks), 0)
+
 
 if __name__ == '__main__':
     unittest.main()
