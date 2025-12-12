@@ -58,15 +58,15 @@ This document outlines the detailed, dependency-ordered tasks required to implem
 - [X] T021 [US3] Implement `update_task(self, task_id, new_title=None, new_description=None)` method in `src/todo.py::TodoApp`
 - [X] T022 [P] [US3] Add unit tests for `TodoApp.update_task` including edge cases (invalid ID, partial updates) in `tests/unit/test_todo.py`
 - [X] T023 [US3] Add 'Update Task' option to the main menu in `src/todo.py`
-- [ ] T024 [P] [US3] Add integration tests for 'Update Task' via CLI in `tests/integration/test_cli.py`
+- [X] T024 [P] [US3] Add integration tests for 'Update Task' via CLI in `tests/integration/test_cli.py`
 
 ### Phase 6: User Story 4 - Delete Task (P2)
 
 **Goal**: Users can delete tasks that are no longer needed.
 **Independent Test Criteria**: An existing task can be deleted and is no longer present in the task list.
 
-- [ ] T025 [US4] Implement `delete_task(self, task_id)` method in `src/todo.py::TodoApp`
-- [ ] T026 [P] [US4] Add unit tests for `TodoApp.delete_task` including edge cases (invalid ID) in `tests/unit/test_todo.py`
+- [X] T025 [US4] Implement `delete_task(self, task_id)` method in `src/todo.py::TodoApp`
+- [X] T026 [P] [US4] Add unit tests for `TodoApp.delete_task` including edge cases (invalid ID) in `tests/unit/test_todo.py`
 - [ ] T027 [US4] Add 'Delete Task' option to the main menu in `src/todo.py`
 - [ ] T028 [P] [US4] Add integration tests for 'Delete Task' via CLI in `tests/integration/test_cli.py`
 

@@ -74,5 +74,22 @@ class TestTodoApp(unittest.TestCase):
         self.assertEqual(task.title, "Title")
         self.assertEqual(task.description, "Description")
 
+    def test_delete_task(self):
+        self.app.add_task("Task 1")
+        self.app.add_task("Task 2")
+        self.assertTrue(self.app.delete_task(1))
+        self.assertEqual(len(self.app.tasks), 1)
+        self.assertEqual(self.app.tasks[0].id, 2)
+
+    def test_delete_task_invalid_id(self):
+        self.app.add_task("Task 1")
+        self.assertFalse(self.app.delete_task(999))
+        self.assertEqual(len(self.app.tasks), 1)
+
+    def test_delete_only_task(self):
+        self.app.add_task("Only Task")
+        self.assertTrue(self.app.delete_task(1))
+        self.assertEqual(len(self.app.tasks), 0)
+
 if __name__ == '__main__':
     unittest.main()

@@ -36,10 +36,13 @@ class TodoApp:
             if task.id == task_id:
                 if new_title is not None:
                     task.title = new_title
-                if new_description is not None:
-                    task.description = new_description
                 return True
         return False
+
+    def delete_task(self, task_id):
+        initial_len = len(self.tasks)
+        self.tasks = [task for task in self.tasks if task.id != task_id]
+        return len(self.tasks) < initial_len
 
 def display_menu():
     print("\n--- Todo CLI App ---")
@@ -80,6 +83,12 @@ def main():
             new_description = input("Enter new description (leave blank to keep current): ")
             if app.update_task(task_id, new_title if new_title else None, new_description if new_description else None):
                 print(f"Task {task_id} updated successfully.")
+            else:
+                print(f"Task {task_id} not found.")
+        elif choice == '5':
+            task_id = int(input("Enter the ID of the task to delete: "))
+            if app.delete_task(task_id):
+                print(f"Task {task_id} deleted successfully.")
             else:
                 print(f"Task {task_id} not found.")
         elif choice == '6':
