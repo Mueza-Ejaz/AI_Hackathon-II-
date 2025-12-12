@@ -93,18 +93,17 @@ def main():
                 new_title = input(
                     "Enter new title (leave blank to keep current): ").strip()
                 new_description = input(
-                    "Enter new description (leave blank to keep current): ").strip()
+                    "Enter new description (leave blank to keep current): "
+                ).strip()
                 if not new_title and not new_description:
                     print("No update provided. Task not modified.")
                     continue
 
-                # Re-breaking this for E501
-                                if app.update_task(
-                                        task_id,
-                                        new_title if new_title else None,
-                                        (new_description if new_description else None)
-                                ):
-                    print(f"Task {task_id} updated successfully.")
+                if app.update_task(
+                        task_id,
+                        new_title if new_title else None,
+                        new_description if new_description else None):
+                    print("Task updated successfully.")
                 else:
                     print(f"Task {task_id} not found.")
             except ValueError:
